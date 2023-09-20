@@ -20,7 +20,7 @@
             </div>
     <?php endforeach;
     } else {
-        echo "<h5 class='text-center'>No videos available.</h5>";
+        echo "<h5 class='text-center'>No videos available</h5>";
     }
     ?>
 </div>
