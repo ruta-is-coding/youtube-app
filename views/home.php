@@ -1,5 +1,5 @@
 <a href="./" style="text-decoration:none">
-    <h1 class="text-center" style="color: #FFBF00">Youtube App</h1>
+    <h1 class="text-center" style="color: #FFBF00">Rūtos video player</h1>
 </a>
 <div class="d-flex justify-content-center gap-3 mt-5">
     <?php foreach ($categories as $row) : ?>
