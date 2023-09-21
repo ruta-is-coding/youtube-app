@@ -15,8 +15,10 @@
     if (isset($videos)) {
         foreach ($videos as $row) : ?>
             <div class="col-4 mb-5">
-                <iframe width=100% height="315" src=<?= $row['url'] ?> frameborder="0" allow="autoplay" allowfullscreen class="rounded overflow-hidden"></iframe>
-                <a href="?page=video" class="text-decoration-none text-reset"><?= $row['name'] ?></a>
+                <a href="?page=player&id=<?= $row['id'] ?>">
+                    <img src=<?= $row['thumbnail_url'] ?> alt=<?= $row['name'] ?> class="rounded overflow-hidden" style="max-width: 100%">
+                </a>
+                <a href="?page=player&id=<?= $row['id'] ?>" class="text-decoration-none text-reset"><?= $row['name'] ?></a>
             </div>
     <?php endforeach;
     } else {

@@ -6,13 +6,19 @@ try {
     echo 'Nepavyko prisijungti';
     exit;
 }
+
 //UTF-8 koduotės simbolių nustatymas
 $db->set_charset("utf8mb4");
+
 //Video duomenų paėmimas
 //Patikrinimas, ar yra POST metodu siunčiami paieškos duomenys
 if (isset($_POST['search'])) {
     $name = $_POST['search'];
     $resultFromVideos = $db->query("SELECT * FROM videos WHERE name LIKE '%$name%'");
+    //Patikrinimas, ar query parametre yra player
+} elseif (isset($_GET['page']) and $_GET['page'] === 'player') {
+    $id = $_GET['id'];
+    $resultFromVideos = $db->query("SELECT * FROM videos WHERE id = $id");
     //Patikrinimas, ar query parametre yra kategorijos id
 } elseif (isset($_GET['category'])) {
     $id = $_GET['category'];
@@ -24,6 +30,7 @@ if (isset($_POST['search'])) {
 if ($resultFromVideos->num_rows > 0) {
     $videos = $resultFromVideos->fetch_all(MYSQLI_ASSOC);
 }
+
 //Kategorijos
 $resultFromCategories = $db->query('SELECT * FROM categories');
 if ($resultFromCategories->num_rows > 0) {
@@ -48,8 +55,8 @@ if ($resultFromCategories->num_rows > 0) {
         <?php
         $page = isset($_GET['page']) ? $_GET['page'] : false;
         switch ($page) {
-            case "video":
-                include './views/video.php';
+            case "player":
+                include './views/player.php';
                 break;
             default:
                 include './views/home.php';
