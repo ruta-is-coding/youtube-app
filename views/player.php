@@ -9,11 +9,8 @@
             <p><?= $video['description'] ?></p>
             <h5 style="color: #ffbf00;">Uploaded by:</h5>
             <?php
-            //User'io duomenys
-            $resultFromUsers = $db->query('SELECT * FROM users WHERE id=' . $video['user_id']);
-            if ($resultFromUsers->num_rows > 0) {
-                $user = $resultFromUsers->fetch_all(MYSQLI_ASSOC)[0];
-            }
+            //Vieno user'io duomenys
+            $user = $db->query('SELECT * FROM users WHERE id=' . $video['user_id'])->fetch_all(MYSQLI_ASSOC)[0];
             ?>
             <p><?= $user['username'] ?></p>
         </div>
