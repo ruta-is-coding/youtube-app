@@ -1,4 +1,6 @@
 <?php
+//Sesijos pradžia (cookies)
+session_start();
 //Prisijungimas prie mySQL ir testavimas
 try {
     $db = new mysqli('localhost', 'root', '', 'youtube_player');
