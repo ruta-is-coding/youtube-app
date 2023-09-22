@@ -55,8 +55,15 @@ if ($resultFromCategories->num_rows > 0) {
 <body>
     <header>
         <div class="container mt-5 d-flex justify-content-end gap-3">
-            <a href="?page=login" class="btn orange">Log In</a>
-            <a href="?page=register" class="btn orange">Register</a>
+            <!-- Jeigu vartotojas prisijungęs, atvaizduojami šie mygtukai: -->
+            <?php if (isset($_SESSION['user_id'])) : ?>
+                <a href="?page=upload" class="btn orange">Upload a video</a>
+                <a href="?page=logout" class="btn orange">Log Out</a>
+                <!-- Jeigu vartotojas neprisijungęs, atvaizduojami šie mygtukai: -->
+            <?php else : ?>
+                <a href="?page=login" class="btn orange">Log In</a>
+                <a href="?page=register" class="btn orange">Register</a>
+            <?php endif; ?>
         </div>
     </header>
     <div class="container mt-5">
@@ -71,6 +78,10 @@ if ($resultFromCategories->num_rows > 0) {
                 break;
             case "player":
                 include './views/player.php';
+                break;
+            case "logout":
+                session_destroy();
+                header('Location: ./');
                 break;
             default:
                 include './views/home.php';
