@@ -6,7 +6,7 @@
         </div>
         <div class="col-3">
             <h5 style="color: #ffbf00;">Description:</h5>
-            <p><?= $video['description'] ?></p>
+            <p><?= nl2br($video['description']) ?></p>
             <h5 style="color: #ffbf00;">Uploaded by:</h5>
             <?php
             //Vieno user'io duomenys
