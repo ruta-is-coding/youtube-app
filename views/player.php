@@ -5,9 +5,9 @@
             <iframe width="840" height="472.5" src="<?= $video['url'] ?>" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
         <div class="col-3">
-            <h5 style="color: #ffbf00;">Description:</h5>
+            <h5>Description:</h5>
             <p><?= nl2br($video['description']) ?></p>
-            <h5 style="color: #ffbf00;">Uploaded by:</h5>
+            <h5>Uploaded by:</h5>
             <?php
             //Vieno user'io duomenys
             $user = $db->query('SELECT * FROM users WHERE id=' . $video['user_id'])->fetch_all(MYSQLI_ASSOC)[0];

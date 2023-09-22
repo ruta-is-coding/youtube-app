@@ -3,7 +3,7 @@
 </a>
 <form class="input-group mt-3" method='POST' action="./">
     <input type="text" class="form-control" name="search">
-    <button class="btn">Search</button>
+    <button class="btn orange">Search</button>
 </form>
 <div class="d-flex justify-content-center gap-3 mt-3">
     <?php foreach ($categories as $row) : ?>

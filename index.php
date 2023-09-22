@@ -51,10 +51,22 @@ if ($resultFromCategories->num_rows > 0) {
 </head>
 
 <body>
+    <header>
+        <div class="container mt-5 d-flex justify-content-end gap-3">
+            <a href="?page=login" class="btn orange">Log In</a>
+            <a href="?page=register" class="btn orange">Register</a>
+        </div>
+    </header>
     <div class="container mt-5">
         <?php
         $page = isset($_GET['page']) ? $_GET['page'] : false;
         switch ($page) {
+            case "login":
+                include './views/login.php';
+                break;
+            case "register":
+                include './views/register.php';
+                break;
             case "player":
                 include './views/player.php';
                 break;
