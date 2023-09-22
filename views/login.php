@@ -9,13 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         strlen($_POST['email']) > 0 and
         strlen($_POST['password']) > 0
     ) {
+        //prisijungimo validacija
+        //pasiselektiname user id pagal tai, kas yra įvesta
         $userIdData = $db->query(
             sprintf("SELECT id FROM users WHERE email='%s' AND password='%s'", $_POST['email'], md5($_POST['password']))
         );
-
-        echo $result->num_rows;
-
-        if ($result->num_rows) {
+        if ($userIdData->num_rows) {
             //sesijos key ir reikšmės priskyrimas
             $userId = $userIdData->fetch_assoc()['id'];
             $_SESSION['user_id'] = $userId;
