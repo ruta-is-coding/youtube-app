@@ -12,6 +12,7 @@ try {
 //UTF-8 koduotės simbolių nustatymas
 $db->set_charset("utf8mb4");
 
+
 //Video duomenų paėmimas
 //Patikrinimas, ar yra POST metodu siunčiami paieškos duomenys
 if (isset($_POST['search'])) {
@@ -26,7 +27,10 @@ if (isset($_POST['search'])) {
     $id = $_GET['category'];
     $resultFromVideos = $db->query("SELECT * FROM videos WHERE category_id = $id");
 } else {
-    $resultFromVideos = $db->query("SELECT * FROM videos");
+    // $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    // $limit = $page * 20;
+    // $offset = 0;
+    $resultFromVideos = $db->query("SELECT * FROM videos LIMIT 0,20");
 }
 //fetchinimas
 if ($resultFromVideos->num_rows > 0) {
@@ -57,7 +61,7 @@ if ($resultFromCategories->num_rows > 0) {
         <div class="container mt-5 d-flex justify-content-end gap-3">
             <!-- Jeigu vartotojas prisijungęs, atvaizduojami šie mygtukai: -->
             <?php if (isset($_SESSION['user_id'])) : ?>
-                <a href="?page=upload" class="btn orange">Upload a video</a>
+                <a href="?page=upload" class="btn orange">Upload</a>
                 <a href="?page=logout" class="btn orange">Log Out</a>
                 <!-- Jeigu vartotojas neprisijungęs, atvaizduojami šie mygtukai: -->
             <?php else : ?>
@@ -68,6 +72,7 @@ if ($resultFromCategories->num_rows > 0) {
     </header>
     <div class="container mt-5">
         <?php
+        //puslapis
         $page = isset($_GET['page']) ? $_GET['page'] : false;
         switch ($page) {
             case "login":
@@ -75,6 +80,9 @@ if ($resultFromCategories->num_rows > 0) {
                 break;
             case "register":
                 include './views/register.php';
+                break;
+            case "upload":
+                include './views/upload.php';
                 break;
             case "player":
                 include './views/player.php';
@@ -86,6 +94,7 @@ if ($resultFromCategories->num_rows > 0) {
             default:
                 include './views/home.php';
         }
+        include './components/pagination.php';
         ?>
     </div>
 </body>

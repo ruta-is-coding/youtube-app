@@ -14,7 +14,7 @@
     <?php
     if (isset($videos)) {
         foreach ($videos as $row) : ?>
-            <div class="col-4 mb-5">
+            <div class="col-3 mb-5">
                 <a href="?page=player&id=<?= $row['id'] ?>">
                     <img src=<?= $row['thumbnail_url'] ?> alt=<?= $row['name'] ?> class="rounded overflow-hidden" style="max-width: 100%">
                 </a>
