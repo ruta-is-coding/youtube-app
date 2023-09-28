@@ -21,6 +21,7 @@
                 <a href="?page=player&id=<?= $row['id'] ?>" class="text-decoration-none text-reset"><?= $row['name'] ?></a>
             </div>
     <?php endforeach;
+        include './components/pagination.php';
     } else {
         echo "<h5 class='text-center'>No videos available</h5>";
     }

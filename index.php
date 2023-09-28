@@ -91,7 +91,6 @@ if ($resultFromCategories->num_rows > 0) {
             default:
                 include './views/home.php';
         }
-        include './components/pagination.php';
         ?>
     </div>
 </body>
