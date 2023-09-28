@@ -17,20 +17,17 @@ $db->set_charset("utf8mb4");
 //Patikrinimas, ar yra POST metodu siunčiami paieškos duomenys
 if (isset($_POST['search'])) {
     $name = $_POST['search'];
-    $resultFromVideos = $db->query("SELECT * FROM videos WHERE name LIKE '%$name%'");
+    $resultFromVideos = $db->query("SELECT * FROM videos WHERE name LIKE '%$name%' ORDER BY view_count DESC");
     //Patikrinimas, ar query parametre yra player
 } elseif (isset($_GET['page']) and $_GET['page'] === 'player') {
     $id = $_GET['id'];
-    $resultFromVideos = $db->query("SELECT * FROM videos WHERE id = $id");
+    $resultFromVideos = $db->query("SELECT * FROM videos WHERE id = $id ORDER BY view_count DESC");
     //Patikrinimas, ar query parametre yra kategorijos id
 } elseif (isset($_GET['category'])) {
     $id = $_GET['category'];
-    $resultFromVideos = $db->query("SELECT * FROM videos WHERE category_id = $id");
+    $resultFromVideos = $db->query("SELECT * FROM videos WHERE category_id = $id ORDER BY view_count DESC");
 } else {
-    // $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    // $limit = $page * 20;
-    // $offset = 0;
-    $resultFromVideos = $db->query("SELECT * FROM videos LIMIT 0,20");
+    $resultFromVideos = $db->query("SELECT * FROM videos ORDER BY view_count DESC");
 }
 //fetchinimas
 if ($resultFromVideos->num_rows > 0) {
